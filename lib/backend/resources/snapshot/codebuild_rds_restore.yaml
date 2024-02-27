@@ -1,0 +1,17 @@
+version: 0.2
+
+phases:
+  pre_build:
+    commands:
+      - sudo yum install jq -y
+      - sudo yum install mariadb105 -y
+  build:
+    commands:
+      - aws s3 cp s3://$SNAPSHOT_STAGING_BUCKET_NAME/leaderboard-mysql.dump.gz ./
+      - gunzip leaderboard-mysql.dump.gz
+      - export DB_SECRET=$(aws secretsmanager get-secret-value --secret-id $DB_SECRET_ARN | jq -r '.SecretString')
+      - export DB_HOST=$(echo $DB_SECRET | jq -r '.host')
+      - export DB_DBNAME=$(echo $DB_SECRET | jq -r '.dbname')
+      - export DB_USER=$(echo $DB_SECRET | jq -r '.username')
+      - export DB_PASSWORD=$(echo $DB_SECRET | jq -r '.password')
+      - mysql -h $DB_HOST -u $DB_USER --password=$DB_PASSWORD $DB_DBNAME < leaderboard-mysql.dump

@@ -1,0 +1,14 @@
+{
+    "name": "elasticache-gaming-leaderboard-backend",
+    "version": "0.1.0",
+    "dependencies": {
+        "@aws-sdk/client-secrets-manager": "^3.491.0",
+        "@faker-js/faker": "^8.3.1",
+        "mysql2": "^3.7.0",
+        "tedis": "^0.1.12"
+    },
+    "devDependencies": {
+        "@types/aws-lambda": "^8.10.131",
+        "@types/node": "^20.11.4"
+    }
+}

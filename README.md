@@ -1,17 +1,28 @@
-## My Project
+# Build a Real-Time Gaming Leaderboard with Amazon ElastiCache for Redis
+This repository contains the code sample on how to build a gaming leaderboard using Amazon ElastiCache for Redis. More details about the architecture can be found in the [blog](https://aws.amazon.com/blogs/database/building-a-real-time-gaming-leaderboard-with-amazon-elasticache-for-redis/).
 
-TODO: Fill this README out!
+## High Level Architecture
+This is a simple demo demonstrating how developers can take advantage of Sorted Sets to build a gaming leaderboard. The following is a high-level diagram of the sample application.
 
-Be sure to:
+![High-Level Architecture](doc/diagram.png)
 
-* Change the title in this README
-* Edit your repository description on GitHub
+## Requirements
+To deploy the demo application, you need the following:
+- Node (v18 and higher) and the corresponding NPM.
+- [Cloud Development Kit (CDK) v2](https://docs.aws.amazon.com/cdk/v2/guide/getting_started.html#getting_started_install)
 
-## Security
+## Bootstrapping
+If you haven't used CDK or haven't deployed anything using CDK, you need to [bootstrap your account/region](https://docs.aws.amazon.com/cdk/v2/guide/bootstrapping.html). To do that, run the following command:
 
-See [CONTRIBUTING](CONTRIBUTING.md#security-issue-notifications) for more information.
+`cdk bootstrap aws://{ACCOUNT-NUMBER}/{REGION}`
 
-## License
+## Deployment
+Once your account/region has been bootstrapped. You can now deploy the demo application by running the following command:
 
-This library is licensed under the MIT-0 License. See the LICENSE file.
+`cdk deploy`
 
+## Deployment Outputs
+Once the deployment is done, you will see 2 outputs in your terminal, these are as follows:
+
+- `ElasticacheGamingLeaderboardStack.APIGatewayInvokeURL`: the API Gateway endpoint if you want to test the APIs. The frontend interacts with this particular endpoint to load the leaderboard or upsert scores to the leaderboard.
+- `ElasticacheGamingLeaderboardStack.FrontendURL`: You can take this URL and open in your browser. This contains a basic UI to see what's in the leaderboard. You can also use your browser's developer tools to observe the API interactions and its payload.
