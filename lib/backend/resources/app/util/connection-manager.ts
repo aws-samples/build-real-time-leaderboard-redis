@@ -23,6 +23,8 @@ export interface ConnectionManagerProps {
 export class ConnectionManager {
     private readonly secretsManagerClient: SecretsManagerClient
     public static readonly REDIS_ZSET_NAME = "leaderboard"
+    public static readonly REDIS_USER_CACHE_NAME = "users"
+    
     private secret?: RDSSecretValue
     private rdsConnection?: mysql.Connection
     private redis?: Tedis

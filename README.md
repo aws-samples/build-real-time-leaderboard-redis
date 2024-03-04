@@ -8,6 +8,8 @@ This is a simple demo demonstrating how developers can take advantage of Sorted 
 
 ## Requirements
 To deploy the demo application, you need the following:
+- We store database and Redis snapshots in the `snapshots` folder, so to clone the repository you need to [install Git LFS](https://docs.github.com/en/repositories/working-with-files/managing-large-files/installing-git-large-file-storage).
+- Clone the repository using the following command: `git lfs clone https://github.com/aws-samples/build-real-time-leaderboard-redis`
 - Node (v18 and higher) and the corresponding NPM.
 - [Cloud Development Kit (CDK) v2](https://docs.aws.amazon.com/cdk/v2/guide/getting_started.html#getting_started_install)
 
